@@ -1,32 +1,48 @@
-/**
- * @author Mr. Rasmussen
- */
-
 package fracCalc;
+
+import java.util.Scanner;
 
 public class FracCalc {
 
-    public static void main(String[] args)
-    {
-        // TODO: Read the input from the user and call produceAnswer with an equation
+	public static void main(String[] args) {
+		Scanner Userinput = new Scanner(System.in);
+		String input = Userinput.nextLine();
+		while (!(input.toUpperCase()).equals("QUIT")) {
+			System.out.println(produceAnswer(input));
+			input = Userinput.nextLine();
+		}
+	}
 
-    }
+	public static String produceAnswer(String input) {
+		int pointofoperator = 0;
+		String operation;
+		int addition = input.indexOf(" + ");
+		int subtraction = input.indexOf(" - ");
+		int division = input.indexOf(" / ");
+		int multiplication = input.indexOf(" + ");
 
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    {
-        // TODO: Implement this function to produce the solution to the input
-
-        return "";
-    }
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
-
+		if (addition!=-1) {
+			pointofoperator=addition;
+			operation="+";
+		} else if (subtraction!=-1) {
+			pointofoperator=subtraction;
+			operation="-";
+		} else if (division!=-1) {
+			pointofoperator=division;
+			operation="/";
+		} else if (multiplication!=-1) {
+			pointofoperator=multiplication;
+			operation="*";
+		}
+		
+	String firstpacket="";
+	String secondpacket="";
+	for (int i=0;i<pointofoperator;i++) {
+		firstpacket=firstpacket+input.charAt(i);
+	}	
+	for (int i = 0; i < input.length() - 3 - pointofoperator; i++) {
+		secondpacket = secondpacket + input.charAt(3 + pointofoperator + i);
+		}
+			return secondpacket;
+		}
 }
